@@ -1,0 +1,50 @@
+<% @page_title = "Subcategorias - #{@subcategories.name}" %>
+<div class="row">
+  <div class="small-7 small-offset-2 columns offset">
+    <%= link_to(@subcategories.name, {:action => "show_subcategory", :id => @subcategories.id},{:class => "page-title"}) %>
+  </div>
+  <div class="small-3 columns offset-button">
+  </div>
+</div>
+<div class="row rendered" id="view-info" modal-message="">
+  <div class="small-2 columns"></div>
+  <div class="small-10 small columns">
+    <div class="row">
+      <div class="small-12 columns success">
+        <% if flash[:notice] %>
+            <div data-alert class="alert-box success-alert">
+              <%= flash[:notice] %>
+              <a href="#" class="close">&times;</a>
+            </div>
+        <% end %>
+      </div>
+    </div>
+        <div class="row">
+          <div class="small-12 columns">
+            <% if flash[:no_data] %>
+                <%= render "shared/no_data", {:message => flash[:no_data]} %>
+            <% end %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="<%= set_class('small-12 columns data-content display-none', 'small-12 columns data-content', @no_data)%>">
+            <table class="responsive collection-table">
+              <thead>
+              <tr>
+                <th>Subcategorias</th>
+                <th></th>
+                <th></th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr id="tr-<%= @subcategories.id %>">
+                <td class="name-column"><%= @subcategories.name %></td>
+                <td><%= link_to(content_tag(:i, "", :class => "fi-pencil icon-link-action")+" Editar", {:action => "edit_subcategory", :id => @subcategories.id },{:class => "link-action"}) %></td>
+                <td><%= link_to(content_tag(:i, "", :class => "fi-trash icon-link-action")+" Eliminar", {:action => "delete_subcategory", :id => @subcategories.id },{:class => "link-action", :data => {:confirm => ""}}) %></td>
+              </tr>
+              </tbody>
+            </table>
+    </div>
+    </div>
+  </div>
+</div>

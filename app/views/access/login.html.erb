@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="small-3 small-centered columns">
+    <h1 class="logo-login">Shopzii</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="small-5 small-centered columns">
+    <%= form_for User.new, :url => {:action => "attempt_login"}, :data => {:validation => true}, :builder => Judge::FormBuilder do |f| %>
+        <div class="row collapse">
+          <div class="small-1 columns">
+            <span class="prefix"><i class="fa fa-user"></i></span>
+          </div>
+          <div class="small-11 columns">
+            <%= f.text_field :username, :validate => true, :placeholder => "Ingrse su usuario", :validation => "true" %>
+          </div>
+        </div>
+        <div class="row collapse">
+          <div class="small-1 columns">
+            <span class="prefix"><i class="fa fa-lock"></i></span>
+          </div>
+          <div class="small-11 columns">
+            <%= f.password_field :password, :validate => true, :placeholder => "Ingrse su contrasena", :validation => "true" %>
+          </div>
+        </div>
+        <div class="row text-center">
+          <div class="small-12 columns">
+            <%= submit_tag("Entrar", :class => "button-action small button entire-width")%>
+          </div>
+          <%if flash[:error]%>
+            <span class="login-error"><%= flash[:error]%></span>
+          <% end %>
+        </div>
+    <% end %>
+  </div>
+</div>

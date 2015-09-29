@@ -1,0 +1,16 @@
+<% @page_title= "Editar producto" %>
+<div class="row">
+  <div class="small-7 small-centered columns">
+    <p class="page-title">Editar producto</p>
+  </div>
+</div>
+<div class="row rendered">
+  <div class="small-2 columns"></div>
+  <div class="small-10 small columns">
+    <div class="row">
+      <div class="small-12 columns">
+        <%= render 'product_form', {action: 'update', remote: "nonremote", value: "", button_label: 'Editar Producto', product: @product} %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<% @count = 0 %>
+<div class="row product-row">
+  <% products.each do |product| %>
+      <div class=" small-4 columns">
+        <div class="product-container">
+          <%= link_to(product.name, {:action => "show_product", :id => product.id } ) %>
+          <%= link_to((image_tag product.photos.first.photo.url(:medium)), {:action => "show_product", :id => product.id } ) %>
+        </div>
+        <div class="add-cart-container"><p><%= number_to_currency(product.price) + " COP" %></p></div>
+      </div>
+      <% @count+= 1%>
+      <% if @count % 3 == 0 && products.last.id != product.id %>
+          <% @count = 0%>
+          </div>
+          <div class="row product-row">
+      <% elsif @count % 3 == 0 && products.last.id == product.id %>
+          <% @count = 0%>
+          </div>
+      <% elsif products.last.id == product.id %>
+          <% (3 - @count).times do %>
+              <div class=" small-4 columns"></div>
+          <% end %>
+          </div>
+          <% @count = 0%>
+      <% end %>
+  <% end %>

@@ -1,0 +1,8 @@
+<tr id="tr-<%= cart_item.id %>">
+    <td class="photo-column "><%= link_to((image_tag Product.find(cart_item.product_id).photos.first.photo.url(:thumb)), {:action => "properties", :id => cart_item.id } ) %></td>
+    <td class="product-column"><%= Product.find(cart_item.product_id).name %></td>
+    <td class="product-column"><%= number_to_currency(Product.find(cart_item.product_id).price * cart_item.quantity) + " COP" %></td>
+    <td><%= cart_item.quantity %></td>
+    <td><%= link_to(content_tag(:i, "", :class => "fa fa-minus-square icon-link-action")+" Eliminar", {:action => "delete", :id => cart_item.id },{:class => "link-action", :data => {:confirm => ""}, :remote => true}) %></td>
+</tr>
+

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Shopzii  - Inicio de sesion</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <%= stylesheet_link_tag    "admin" %>
+    <%= stylesheet_link_tag    "responsive-tables" %>
+    <%= stylesheet_link_tag    "foundation-icons" %>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Comfortaa:400,700' rel='stylesheet' type='text/css'>
+    <%= javascript_include_tag "vendor/modernizr" %>
+
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body class="access-body">
+    <%= yield %>
+    <%= javascript_include_tag "application"%>
+  </body>
+</html>

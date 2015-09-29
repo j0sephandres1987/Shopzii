@@ -1,0 +1,9 @@
+<tr id="tr-<%= category.id %>">
+  <td><%= check_box_tag('selected[]', category.id) %></td>
+  <td class="name-column"><%= category.name %></td>
+  <td><%= link_to(content_tag(:i, "", :class => "fa fa-external-link-square icon-link-action")+" Ver", {:action => "show", :id => category.id },{:class => "link-action"}) %></td>
+  <td><%= link_to(content_tag(:i, "", :class => "fa fa-pencil-square icon-link-action")+" Editar", {:action => "edit", :id => category.id },{:class => "link-action"}) %></td>
+  <td><%= link_to(content_tag(:i, "", :class => "fa fa-minus-square icon-link-action")+" Eliminar", {:action => "delete", :id => category.id },{:class => "link-action", :data => {:confirm => ""}, :remote => true}) %></td>
+</tr>
+
+

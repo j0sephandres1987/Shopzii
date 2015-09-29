@@ -1,0 +1,44 @@
+<% @page_title = "Carrito de compras" %>
+
+<div class="row">
+  <div class="small-12 columns">
+    <% if flash[:array] %>
+    <h1><%= flash[:notice] %></h1>
+    <% end %>
+  </div>
+</div>
+<div class="row">
+  <div class="small-7 small-offset-2 columns offset">
+      <p class="page-title"><%= @preference %></p>
+  </div>
+</div>
+<div class="row rendered" id="view-info" modal-message="">
+  <div class="small-2 columns"></div>
+  <div class="small-10 small columns">
+    <div class="row">
+      <div class="small-12 columns">
+        <% if flash[:no_data] %>
+            <%= render "shared/no_data", {:message => flash[:no_data]} %>
+        <% end %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="<%= set_class('small-12 columns data-content display-none', 'small-12 columns data-content', @no_data)%>">
+        <table class="responsive collection-table">
+          <thead>
+          <tr>
+            <th>Imagen</th>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody>
+          <%= render @cart_items %>
+          </tbody>
+        </table>
+    </div>
+    </div>
+  </div>
+</div>

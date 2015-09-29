@@ -1,0 +1,87 @@
+<div class="row">
+  <div id="view-info" modal-message="El producto fue agregado al carrito." not-confirm="true"></div>
+  <div class="small-3 columns">
+    <%= render "categories_side_nav", {categories: @categories} %>
+  </div>
+  <div class="small-9 columns">
+    <div class="row">
+      <div class="small-7 columns">
+        <div class="main-image">
+          <%= image_tag @product.photos.first.photo.url(:original) %>
+        </div>
+        <div class="thumbs">
+          <% unless @product.photos.first.nil? %>
+              <div class="thumb-container">
+                <%= image_tag @product.photos.first.photo.url(:original) %>
+              </div>
+          <% end %>
+          <% unless @product.photos.second.nil? %>
+              <div class="thumb-container">
+                <%= image_tag @product.photos.second.photo.url(:original) %>
+              </div>
+          <% end %>
+          <% unless @product.photos.third.nil? %>
+              <div class="thumb-container">
+                <%= image_tag @product.photos.third.photo.url(:original) %>
+              </div>
+          <% end %>
+          <% unless @product.photos.fourth.nil? %>
+              <div class="thumb-container">
+                <%= image_tag @product.photos.fourth.photo.url(:original) %>
+              </div>
+          <% end %>
+          <% unless @product.photos.fifth.nil? %>
+              <div class="thumb-container">
+                <%= image_tag @product.photos.fifth.photo.url(:original) %>
+              </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="small-5 columns">
+        <p class="product-name"><%= @product.name %></p>
+        <p class="product-price"><%= number_to_currency(@product.price)  + " COP" %></p>
+        <%= form_for @cart_item, :url => { :action => "add_to_cart", :product_id => @product.id}, :data => { :remote => true, :validation => true}, :builder => Judge::FormBuilder do |f| %>
+            <% @product.properties.each do |p| %>
+                <%= render "property_as_select", {property_name: p.name, values: p.values} %>
+            <% end %>
+            <%= f.label :quantity, "Cantidad" %>
+            <%= f.text_field :quantity, :validate => true, :validation => "true" %>
+            <%= submit_tag("Agregar", :class => "button-action-store tiny button entire-width", :data => {:confirm => ""})%>
+        <% end %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-12 columns">
+        <ul class="tabs" data-tab>
+          <li class="tab-title active"><a href="#panel1">Descripcion</a></li>
+          <li class="tab-title"><a href="#panel2">Detalles de envio</a></li>
+        </ul>
+        <div class="tabs-content">
+          <div class="content active" id="panel1">
+            <%= @product.description.html_safe %>
+          </div>
+          <div class="content" id="panel2">
+            <table class="responsive collection-table">
+              <thead>
+              <tr>
+                <th>Medio de envio</th>
+                <th>Tiempo de entrega</th>
+                <th>Precio</th>
+              </tr>
+              </thead>
+              <tbody>
+              <% @product.shipment_methods.each do |s|%>
+                  <tr id="tr-<%= s.id %>">
+                    <td class="name-column"><%= s.name %></td>
+                    <td class="name-column"><%= s.delivery_time %></td>
+                    <td class="name-column"><%= s.price %></td>
+                  </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

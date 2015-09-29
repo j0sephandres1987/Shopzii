@@ -1,0 +1,293 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *= require_tree .
+ *= require_self
+ *= require froala_editor.min.css
+ *= require froala_style.min.css
+ *= require foundation_and_overrides
+ */
+
+body {
+    background: white;
+}
+
+nav {
+  background-color: #e74c3c !important;
+}
+
+nav * {
+    display: inline-block;
+}
+
+.logo {
+    font-family: 'Comfortaa', cursive !important;
+    font-size: 1.4em;
+    color: #FFFFFF;
+    padding-left: 14px;
+    padding-top: 4px;
+}
+
+.logo-login {
+    font-family: 'Comfortaa', cursive !important;
+    font-size: 3em;
+    color: #FFFFFF;
+    padding-left: 12px;
+    padding-top: 140px;
+    padding-bottom: 20px;
+}
+
+.side-nav {
+    background-color: #f8f8f8;
+    width: 20%;
+    top: 30px;
+    bottom: 0;
+    position: fixed;
+    border-right: outset 1px rgba(250, 250, 250, 0.1);
+}
+
+.side-nav li {
+    margin: 0 !important;
+}
+
+.side-nav li a {
+    color: #838383 !important;
+    font-size: 0.78em;
+    height: 30px;
+}
+
+.side-nav li i {
+    padding-right: 6px;
+    color: #838383;
+}
+
+.active-side-menu {
+    background:  #efefef !important;
+    border: none !important;
+}
+
+.side-nav li a:hover {
+    background:  #efefef !important;
+}
+
+.bordered-column {
+    border: 1px solid red;
+}
+
+.rendered {
+    padding-left: 45px !important;
+}
+
+.collection-table {
+    width: 100%;
+}
+
+.entire-width {
+    width: 100%;
+}
+
+.user-actions {
+    float: right;
+    padding-right: 20px;
+}
+
+.user-actions *{
+    background: #e74c3c !important;
+}
+
+.username *{
+    color: white;
+}
+
+.username a span {
+    font-size: 1em;
+    padding-left: 8px;
+}
+
+.username a i {
+    font-size: 1em;
+}
+
+
+.name-column {
+    color: #838383;
+    width: 60%;
+}
+
+.photo-column {
+    color: #838383;
+    width: 15%;
+}
+
+.product-column {
+    color: #838383;
+    width: 20%;
+}
+
+.collection-table thead tr th {
+    color: #838383;
+}
+
+
+.button-action {
+    background-color: #efefef !important;
+    color: #838383 !important;
+}
+
+.button-action:hover {
+    background-color: #838383 !important;
+    color: #efefef !important;
+}
+
+.icon-link-action {
+    color: #e74c3c !important;
+}
+
+.link-action {
+    color: #838383;
+    font-size: 0.8em;
+}
+
+.link-action:hover {
+    color: #454545;
+}
+
+.small-error {
+    background-color: #e74c3c !important;
+}
+
+.login-error {
+    color: white;
+}
+
+.label-error {
+    color: #e74c3c;
+}
+
+.page-title {
+    font-size: 2em;
+    font-weight: 700;
+    color: #e74c3c;
+}
+
+.page-title:hover {
+    color: #838383;
+}
+
+.input-error {
+    margin: 0 !important;
+    border: 1px solid #e74c3c !important;
+}
+
+.current a {
+    background: #e74c3c !important;
+}
+
+.access-body {
+    background: #e74c3c !important;
+}
+
+.success-alert {
+    background: #c1dae6 !important;
+    border-color: #a6bbc6 !important;
+}
+
+.unsuccess-alert {
+    background: #b0b0b0 !important;
+    border-color: #858585 !important;
+}
+
+.action-submit-link {
+    background: white !important;
+    border: none !important;
+    font-family: 'Open Sans', sans-serif !important;
+    font-size: 0.8em !important;
+    color: #e74c3c !important;
+    cursor: pointer;
+}
+
+.bottom-actions ul li i {
+    color: #e74c3c !important;
+    margin-top: -4px !important;
+}
+
+.bottom-actions ul li {
+    padding-left: 2px;
+    margin: 2px !important;
+}
+
+.optional-action{
+    visibility: hidden;
+}
+
+.display-none {
+    display: none;
+}
+
+.prefix i {
+    color: #838383;
+}
+
+.search-icon {
+    color: #d2d2d2;
+    font-size: 1.6em;
+    font-weight: 700;
+}
+
+.search-button {
+    border-top: 1px solid #d2d2d2 !important;
+    border-bottom: 1px solid #d2d2d2 !important;
+    border-right: 1px solid #d2d2d2 !important;
+    font-size: 0.6em !important;
+}
+
+.upload_photo::-webkit-file-upload-button {
+    opacity: 0;
+    bottom: 16px;
+    position: absolute;
+    height: 100px !important;
+    width: 100px !important;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.fi-camera {
+    font-size: 2.4em;
+    color: #7a7a7a;
+}
+
+.photo p {
+    font-size: 0.6em;
+}
+
+.photo {
+    border: 1px dashed #7a7a7a;
+    text-align: center;
+    width: 100px;
+    height: 100px;
+}
+
+.button-action-primary {
+    background-color: #e74c3c !important;
+}
+
+.button-action-primary:hover {
+    background-color: #838383 !important;
+}
+
+.offset {
+    padding-left: 50px !important;
+}
+
+.offset-button {
+    padding-left: 60px !important;
+    padding-top: 10px !important;
+}

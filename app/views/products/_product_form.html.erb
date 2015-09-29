@@ -1,0 +1,61 @@
+<% @count = 0 %>
+<% @index = -1 %>
+<%= form_for product, :url => {:action => action, :id => product.id }, html: { multipart: true }, :data => {remote => value, :validation => true}, :builder => Judge::FormBuilder do |f| %>
+    <div class="row">
+      <div class="small-12 columns">
+        <%= f.label :name, "Nombre" %>
+        <%= f.text_field :name, :validate => true, :validation => "true" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-12 columns">
+        <%= f.label :description, "Descripcion" %>
+        <%= f.text_area :description, :class => "description-wysiwyg" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-12 columns">
+        <%= f.label :category_id, "Categoria" %>
+        <%= f.collection_select :category_id, @categories, :id, :name, {}, {:prompt => "Escoja una categoria", :class => "parent-dynamic-select"} %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-12 columns">
+        <%= f.label :subcategory_id, "Subcategoria" %>
+        <%= f.grouped_collection_select :subcategory_id, @categories, :subcategories, :name, :id, :name, {}, {:class => "child-dynamic-select", :prompt => "Escoja una subcategoria"} %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-12 columns">
+        <%= f.label :shipment_method_ids, "Medio de envio" %>
+        <%= f.collection_check_boxes(:shipment_method_ids, @shipment_methods, :id, :name) %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-12 columns">
+        <%= f.label :price, "Precio" %>
+        <%= f.text_field :price,:validate => true, :validation => "true" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-12 columns">
+        <%= f.label :stock, "En almacen" %>
+        <%= f.text_field :stock,:validate => true, :validation => "true" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-12 columns">
+        <%= f.label :photo, "Imagenes" %>
+        <ul class="inline-list">
+          <%= f.fields_for :photos do |p| %>
+              <li class="photo" photo="<%= product.photos[@index+=1].photo.url(:thumb).nil? %>"><i class="fa fa-camera"></i><p>Seleccionar Imagen</p><%= p.file_field :photo, :class => "upload_photo" %><%= load_photo(product, @count+=1) %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-12 columns">
+        <%= submit_tag button_label, :class => "button tiny button-action right" %>
+      </div>
+    </div>
+<% end %>

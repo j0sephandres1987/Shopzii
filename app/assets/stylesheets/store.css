@@ -1,0 +1,203 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *= require_self
+ *= require foundation_and_overrides
+ */
+
+.row.full-width { width: 100%; max-width: 100%; }
+.row.full-width >.column:first-child,
+.row.full-width >.columns:first-child { padding-left: 0; }
+.row.full-width >.column:last-child,
+.row.full-width >.columns:last-child { padding-right: 0; }
+
+body {
+    background: white;
+}
+
+body * {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.nav-store {
+  background-color: #4DAF7C  !important;
+}
+
+nav * {
+    display: inline-block;
+}
+
+.logo {
+    font-family: 'Comfortaa', cursive;
+    font-size: 1.4em;
+    color: #FFFFFF;
+    padding-left: 14px;
+    padding-top: 4px;
+}
+
+.categories-side-nav {
+    background: #f6f6f6 !important;
+    margin: 0 !important;
+}
+
+.categories-side-nav li {
+    border-bottom: 1px #eeeeee inset;
+    color: #E74C3C;
+    list-style-type: none;
+    padding: 10px;
+}
+
+.subcategory-li {
+    color: #c8c8c8 !important;
+    list-style-type: none;
+    border: 1px red inset;
+    display: none;
+}
+
+.position-absolute {
+    position: absolute;
+}
+
+.categories-li-title {
+    color: #FFFFFF !important;
+    background: #4DAF7C !important;
+}
+
+.category-item a {
+    color: #dfdfdf !important;
+}
+
+.product-container {
+    border: 1px solid #f6f6f6;
+    padding-left: 8px;
+    padding-right: 8px;
+    height: 260px;
+}
+
+.product-container a img{
+    top: 10px;
+    position: relative;
+}
+
+.product-container a {
+    color: #4DAF7C !important;
+    top: 8px;
+    position: relative;
+}
+
+.product-name {
+    color: #4DAF7C;
+    font-weight: 700;
+}
+
+.product-price {
+    color: #5c5c5c;
+    font-weight: 700;
+}
+
+.product-container ul {
+    list-style-type: none;
+}
+
+.price {
+    font-size: 0.8em;
+    color: #bfbfbf;
+    font-weight: 700;
+}
+
+.add-cart-container {
+    background: #4DAF7C;
+    height: 30px;
+}
+
+.add-cart-container i {
+    color: #ffffff;
+    font-size: 0.9em;
+}
+
+.add-cart-container p {
+    color: #ffffff;
+    font-size: 0.9em;
+    padding: 4px;
+}
+
+.product-row {
+    padding-top: 30px;
+}
+
+.main-image img {
+    display: block;
+    cursor: pointer;
+
+}
+
+.main-image {
+    width: 320px;
+    height: 320px;
+}
+
+.thumbs {
+    padding-top: 10px;
+}
+
+.thumb-container {
+    width: 60px;
+    height: 60px;
+    border: 2px solid #d9d9d9;
+    display: inline-block;
+}
+
+.glow-over {
+    -webkit-box-shadow: 0px 0px 5px 5px rgba(213, 213, 213, 1);
+    -moz-box-shadow: 0px 0px 5px 5px rgba(213, 213, 213, 1);
+    box-shadow: 0px 0px 5px 5px rgba(213, 213, 213, 1);
+    -o-box-shadow: 0px 0px 5px 5px rgba(213, 213, 213, 1);
+}
+
+.thumb-container img {
+    cursor: pointer;
+}
+
+.button-action-store {
+    background-color: #4DAF7C !important;
+    color: #ffffff !important;
+}
+
+.button-action-store:hover {
+    background-color: #dddddd !important;
+    color: #838383!important;
+}
+
+.cart {
+    font-size: 0.68em;
+    color: #ffffff;
+    float: right;
+    position: relative;
+    right: 50px;
+    top: 10px;
+}
+
+.cart li {
+    margin: 4px !important;
+}
+
+.not-confirm .secondary {
+    background-color: #4DAF7C !important;
+    color: #FFFFFF;
+}
+
+.not-confirm .alert {
+    display: none;
+}
+
+.cart li a {
+    color: #FFFFFF;
+}

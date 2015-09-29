@@ -1,0 +1,25 @@
+<%= form_for shipment_method, :url => {:action => action, :id => shipment_method.id }, html: { multipart: true }, :data => {remote => value, :validation => true}, :builder => Judge::FormBuilder do |f| %>
+    <div class="row">
+      <div class="small-12 columns">
+        <%= f.label :name, "Nombre" %>
+        <%= f.text_field :name, :validate => true, :validation => "true" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-12 columns">
+        <%= f.label :delivery_time, "Tiempo de entrega" %>
+        <%= f.text_field :delivery_time %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-12 columns">
+        <%= f.label :price, "Precio" %>
+        <%= f.text_field :price, :validate => true, :validation => "true" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-12 columns">
+        <%= submit_tag button_label, :class => "button tiny button-action right" %>
+      </div>
+    </div>
+<% end %>

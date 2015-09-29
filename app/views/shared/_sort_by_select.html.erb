@@ -1,0 +1,6 @@
+<%= form_tag action_url, :remote => true, :class => "sort-form" do %>
+    <% if type == "subcategory" %>
+        <%= hidden_field_tag(:category_id, "#{collection.id}") %>
+    <% end %>
+    <%= select_tag(:sort_by_option, options_for_select(sort_by_options), :prompt => "Ordenar por:", :class => "sort-select")%>
+<% end %>

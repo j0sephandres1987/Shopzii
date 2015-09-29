@@ -1,0 +1,14 @@
+$('.pagination-centered').html("<%= j (will_paginate @subcategories, :params => {:controller => 'collections', :action => 'properties', :id => @category_id}, renderer: FoundationPagination::Rails) %>");
+$('tbody').html("<%= j (render @subcategories) %>");
+//remove alert if exits
+$(".success").find(".alert-box").remove();
+//render success alerts
+if("<%= j (@success) %>" == "true") {
+    $('.no-data-alert').fadeOut();
+    $(".success").prepend("<%= j (render "shared/success", :message => @message) %>");
+    $(document).foundation();
+} else {
+    $('.no-data-alert').fadeOut();
+    $(".success").prepend("<%= j (render "shared/unsuccessfully", :message => @message) %>");
+    $(document).foundation();
+}

@@ -1,0 +1,70 @@
+<% @page_title = "Productos" %>
+
+<div class="row">
+  <div class="small-12 columns">
+    <% if flash[:array] %>
+    <h1><%= flash[:notice] %></h1>
+    <% end %>
+  </div>
+</div>
+<div class="row">
+  <div class="small-7 small-offset-2 columns offset">
+      <p class="page-title">Productos</p>
+  </div>
+  <div class="small-3 columns offset-button">
+    <%= link_to("Nuevo Producto", {:action => "new" },{:class => "button tiny button-action-primary"}) %>
+  </div>
+</div>
+<div class="row rendered" id="view-info" modal-message="">
+  <div class="small-2 columns"></div>
+  <div class="small-10 small columns">
+    <div class="row data-content <%= set_class('display-none', '', @no_data)%>">
+      <div class="small-8 columns">
+        <%= render "shared/search_form", {placeholder: "Buscar una producto", action_url: "/collections/search", collection: nil, type: "product"} %>
+      </div>
+      <div class="small-4 columns">
+        <%= render "shared/sort_by_select", {action_url: "collections/sort", sort_by_options: @sort_by_options, collection: nil, type: "product"} %>
+      </div>
+    </div>
+    <%= form_tag "products/delete_selected", :remote => true do  %>
+        <div class="row">
+          <div class="small-12 columns">
+            <% if flash[:no_data] %>
+                <%= render "shared/no_data", {:message => flash[:no_data]} %>
+            <% end %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="<%= set_class('small-12 columns data-content display-none', 'small-12 columns data-content', @no_data)%>">
+            <div class="pagination-centered"><%= will_paginate @products, renderer: FoundationPagination::Rails %></div>
+            <table class="responsive collection-table">
+              <thead>
+              <tr>
+                <th class="select-all-checkbox"><%= check_box_tag('select-all')%></th>
+                <th>Foto</th>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th></th>
+                <th></th>
+                <th></th>
+              </tr>
+              </thead>
+              <tbody>
+              <%= render @products %>
+              </tbody>
+            </table>
+            <div class="bottom-actions right">
+              <ul class="inline-list">
+                <li class="optional-action"><i class="fi-checkbox"></i></li>
+                <li class="optional-action"><%= submit_tag "Eliminar seleccionados", :id => "delete-selected", :data => {:confirm => ""}, :class => "action-submit-link" %></li>
+                <li></li>
+                <li></li>
+                <li><i class="fi-x"></i></li>
+                <li><%= link_to(" Eliminar todos", {:action => "delete_all" },{:class => "action-submit-link", :data => {:confirm => ""}, :remote => true}) %></li>
+              </ul>
+            </div>
+    <% end %>
+    </div>
+    </div>
+  </div>
+</div>

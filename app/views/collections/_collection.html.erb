@@ -1,0 +1,8 @@
+<tr id="tr-<%= collection.id %>">
+    <td><%= check_box_tag('selected[]', collection.id) %></td>
+    <td class="name-column"><%= collection.name %></td>
+    <td><%= link_to(content_tag(:i, "", :class => "fa fa-external-link-square icon-link-action")+" Ver", {:action => "show", :id => collection.id },{:class => "link-action"}) %></td>
+    <td><%= link_to(content_tag(:i, "", :class => "fa fa-pencil-square icon-link-action")+" Editar", {:action => "edit", :id => collection.id },{:class => "link-action"}) %></td>
+    <td><%= link_to(content_tag(:i, "", :class => "fa fa-minus-square icon-link-action")+" Eliminar", {:action => "delete", :id => collection.id },{:class => "link-action", :data => {:confirm => ""}, :remote => true}) %></td>
+</tr>
+

@@ -1,0 +1,10 @@
+<tr id="tr-<%= product.id %>">
+    <td><%= check_box_tag('selected[]', product.id) %></td>
+    <td class="photo-column "><%= link_to((image_tag product.photos.first.photo.url(:thumb)), {:action => "properties", :id => product.id } ) %></td>
+    <td class="product-column"><%= product.name %></td>
+    <td class="product-column"><%= number_to_currency(product.price) + " COP" %></td>
+    <td><%= link_to(content_tag(:i, "", :class => "fa fa-plus-square icon-link-action")+" Propiedades", {:action => "properties", :id => product.id },{:class => "link-action"}) %></td>
+    <td><%= link_to(content_tag(:i, "", :class => "fa fa-pencil-square icon-link-action")+" Editar", {:action => "edit", :id => product.id },{:class => "link-action"}) %></td>
+    <td><%= link_to(content_tag(:i, "", :class => "fa fa-minus-square icon-link-action")+" Eliminar", {:action => "delete", :id => product.id },{:class => "link-action", :data => {:confirm => ""}, :remote => true}) %></td>
+</tr>
+

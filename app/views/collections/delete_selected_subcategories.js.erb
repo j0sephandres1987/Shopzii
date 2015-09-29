@@ -1,0 +1,18 @@
+$('.pagination-centered').html("<%= j (will_paginate @subcategories, :params => {:controller => 'collections', :action => 'show_subcategories', :id => @category_id}, renderer: FoundationPagination::Rails) %>");
+if("<%= j (@subcategories.empty?) %>") {
+    $('.data-content').fadeOut();
+} else {
+    $('tbody').html("<%= j (render @subcategories) %>");
+}
+//remove alert if exits
+$(".success").find(".alert-box").remove();
+//render success alerts
+if("<%= j (@success) %>" == "true") {
+    $(".optional-action").css("display", "none");
+    $("#select-all").attr('checked', false);
+    $(".success").prepend("<%= j (render "shared/success", :message => @message) %>");
+    $(document).foundation();
+} else {
+    $(".success").prepend("<%= j (render "shared/unsuccessfully", :message => @message) %>");
+    $(document).foundation();
+}

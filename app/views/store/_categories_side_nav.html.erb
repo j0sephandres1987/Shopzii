@@ -1,0 +1,15 @@
+<ul class="categories-side-nav">
+  <li class="categories-li-title">CATEGORIAS</li>
+  <% categories.each do |category| %>
+      <li class="category-item">
+        <%= link_to(category.name, {:action => "show_by_category", :id => category.id})%>
+        <% unless category.subcategories.empty? %>
+            <ul>
+              <% category.subcategories.each do |subcategory| %>
+                  <li class="subcategory-li"><%= link_to(subcategory.name, {:action => "show_by_subcategory", :id => subcategory.id})%></li>
+              <% end %>
+            </ul>
+        <% end %>
+      </li>
+  <% end %>
+</ul>

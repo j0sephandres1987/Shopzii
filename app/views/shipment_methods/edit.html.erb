@@ -1,0 +1,16 @@
+<% @page_title= "Editar medio de envio" %>
+<div class="row">
+  <div class="small-7 small-centered columns">
+    <p class="page-title">Editar medio de envio</p>
+  </div>
+</div>
+<div class="row rendered">
+  <div class="small-2 columns"></div>
+  <div class="small-10 small columns">
+    <div class="row">
+      <div class="small-12 columns">
+        <%= render 'shipment_method_form', {action: 'update', remote: "nonremote", value: "", button_label: 'Editar Envio', shipment_method: @shipment_method, type: "shipment_method" } %>
+      </div>
+    </div>
+  </div>
+</div>

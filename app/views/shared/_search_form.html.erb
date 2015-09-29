@@ -1,0 +1,13 @@
+<div class="row collapse">
+  <div class="small-11 columns">
+    <%= form_tag action_url, :remote => true do %>
+        <% if type == "subcategory" %>
+            <%= hidden_field_tag(:category_id, "#{collection.id}") %>
+        <% end %>
+        <%= text_field_tag(:search_text, "", :placeholder => placeholder)%>
+  </div>
+  <div class="small-1 columns">
+    <%= submit_tag "Buscar", :class => "button tiny button-action postfix search-button" %>
+    <% end %>
+  </div>
+</div>

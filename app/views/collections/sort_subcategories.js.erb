@@ -1,0 +1,2 @@
+$('.pagination-centered').html("<%= j (will_paginate @subcategories, :params => {:controller => 'collections', :action => 'properties', :id => @category_id}, renderer: FoundationPagination::Rails) %>");
+$('tbody').html("<%= j (render @subcategories) %>");

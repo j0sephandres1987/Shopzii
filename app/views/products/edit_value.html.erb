@@ -1,0 +1,16 @@
+<% @page_title= "Editar valor" %>
+<div class="row">
+  <div class="small-7 small-centered columns">
+    <p class="page-title">Editar valor</p>
+  </div>
+</div>
+<div class="row rendered">
+  <div class="small-2 columns"></div>
+  <div class="small-10 small columns">
+    <div class="row">
+      <div class="small-12 columns">
+        <%= render 'shared/collection_form', {action: 'update_value', remote: "nonremote", value: "", button_label: 'Editar Valor', collection: @value, type: "value" } %>
+      </div>
+    </div>
+  </div>
+</div>

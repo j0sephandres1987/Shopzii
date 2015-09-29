@@ -1,0 +1,4 @@
+$(document).ready(function() {
+    $("#cant-items a").html("<%= @items_quantity %>" + " Items");
+    $("#total-value a").html("<%= number_to_currency(@total_value) %>" + " COP");
+});

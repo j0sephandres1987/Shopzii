@@ -1,0 +1,70 @@
+<% @page_title = "Subcategorias - #{@category.name}" %>
+<div class="row">
+  <div class="small-7 small-offset-2 columns offset">
+    <%= link_to(@category.name, {:action => "show", :id => @category.id},{:class => "page-title"}) %>
+  </div>
+  <div class="small-3 columns offset-button">
+  </div>
+</div>
+<div class="row rendered" id="view-info" modal-message="">
+  <div class="small-2 columns"></div>
+  <div class="small-10 small columns">
+    <div class="row">
+      <div class="small-12 columns success">
+        <% if flash[:notice] %>
+            <div data-alert class="alert-box success-alert">
+              <%= flash[:notice] %>
+              <a href="#" class="close">&times;</a>
+            </div>
+        <% end %>
+        <%= render 'shared/collection_form', {action: 'create_subcategory', remote: "remote", value: "true", button_label: 'Agregar Subcategoria', collection: @subcategory, type: "subcategory" } %>
+      </div>
+    </div>
+    <div class="row data-content <%= set_class('display-none', '', @no_data)%>">
+      <div class="small-8 columns">
+        <%= render "shared/search_form", {placeholder: "Buscar una subcategoria", action_url: "/collections/search_subcategory", collection: @category, type: "subcategory"} %>
+      </div>
+      <div class="small-4 columns">
+        <%= render "shared/sort_by_select", {action_url: "/collections/sort_subcategories", sort_by_options: @sort_by_options, type: "subcategory", collection: @category} %>
+      </div>
+    </div>
+    <%= form_tag "/collections/delete_selected_subcategories", :remote => true do  %>
+        <div class="row">
+          <div class="small-12 columns">
+            <% if flash[:no_data] %>
+                <%= render "shared/no_data", {:message => flash[:no_data]} %>
+            <% end %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="<%= set_class('small-12 columns data-content display-none', 'small-12 columns data-content', @no_data)%>">
+            <div class="pagination-centered"><%= will_paginate @subcategories, :params => {:controller => 'collections', :action => 'properties', :id => @category.id}, renderer: FoundationPagination::Rails %></div>
+            <table class="responsive collection-table">
+              <thead>
+              <tr>
+                <th class="select-all-checkbox"><%= check_box_tag('select-all')%></th>
+                <th>Subcategorias</th>
+                <th></th>
+                <th></th>
+                <th></th>
+              </tr>
+              </thead>
+              <tbody>
+              <%= render @subcategories %>
+              </tbody>
+            </table>
+            <div class="bottom-actions right">
+              <ul class="inline-list">
+                <li class="optional-action"><i class="fi-checkbox"></i></li>
+                <li class="optional-action"><%= submit_tag "Eliminar seleccionados", :id => "delete-selected", :data => {:confirm => ""}, :class => "action-submit-link" %></li>
+                <li></li>
+                <li></li>
+                <li><i class="fi-x"></i></li>
+                <li><%= link_to(" Eliminar todos", {:action => "delete_all_subcategories", :id => @category.id },{:class => "action-submit-link", :data => {:confirm => ""}, :remote => true}) %></li>
+              </ul>
+            </div>
+    <% end %>
+    </div>
+    </div>
+  </div>
+</div>

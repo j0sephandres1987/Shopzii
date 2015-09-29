@@ -1,0 +1,7 @@
+<tr id="tr-<%= property.id %>">
+    <td class="name-column"><%= property.name %></td>
+    <td><%= link_to(content_tag(:i, "", :class => "fa fa-external-link-square icon-link-action")+" Valores", {:action => "values", :id => property.id },{:class => "link-action"}) %></td>
+    <td><%= link_to(content_tag(:i, "", :class => "fa fa-pencil-square icon-link-action")+" Editar", {:action => "edit_property", :id => property.id },{:class => "link-action"}) %></td>
+    <td><%= link_to(content_tag(:i, "", :class => "fa fa-minus-square icon-link-action")+" Eliminar", {:action => "delete_property", :id => property.id },{:class => "link-action", :data => {:confirm => ""}, :remote => true}) %></td>
+</tr>
+

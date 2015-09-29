@@ -1,0 +1,15 @@
+$(document).ready(function() {
+    console.log($("table").attr("class"));
+//remove alert if exits
+    //$(".success").find(".alert-box").remove();
+//render success alerts
+    if("<%= j (@success) %>" == "true") {
+        $('.no-data-alert').fadeOut();
+        $(".success").prepend("<%= j (render "shared/success", :message => @message) %>");
+        $(document).foundation();
+    } else {
+        $('.no-data-alert').fadeOut();
+        $(".success").prepend("<%= j (render "shared/unsuccessfully", :message => @message) %>");
+        $(document).foundation();
+    }
+});

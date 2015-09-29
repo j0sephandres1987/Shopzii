@@ -1,0 +1,12 @@
+<% @page_title = "Productos - Agregar producto" %>
+<div class="row">
+  <div class="small-7 small-centered columns">
+    <%= link_to("Nuevo Producto", {:action => "new"},{:class => "page-title"}) %>
+  </div>
+</div>
+<div class="row rendered" id="view-info" modal-message="">
+  <div class="small-2 columns"></div>
+  <div class="small-10 small columns">
+    <%= render 'product_form', {action: 'create', remote: "nonremote", value: "", button_label: 'Agregar Producto', product: @product} %>
+  </div>
+</div>

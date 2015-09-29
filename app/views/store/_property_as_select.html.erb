@@ -1,0 +1,2 @@
+<%= label_tag "Seleccione un #{property_name}" %>
+<%= select_tag "#{property_name.downcase}_id", options_from_collection_for_select(values, "id", "name")%>

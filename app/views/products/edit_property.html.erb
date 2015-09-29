@@ -1,0 +1,16 @@
+<% @page_title= "Editar propiedad" %>
+<div class="row">
+  <div class="small-7 small-centered columns">
+    <p class="page-title">Editar propiedad</p>
+  </div>
+</div>
+<div class="row rendered">
+  <div class="small-2 columns"></div>
+  <div class="small-10 small columns">
+    <div class="row">
+      <div class="small-12 columns">
+        <%= render 'shared/collection_form', {action: 'update_property', remote: "nonremote", value: "", button_label: 'Editar Propiedad', collection: @property, type: "property" } %>
+      </div>
+    </div>
+  </div>
+</div>

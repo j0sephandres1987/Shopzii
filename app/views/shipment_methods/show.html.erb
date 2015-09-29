@@ -1,0 +1,54 @@
+<% @page_title = "Medios de envio - #{@shipment_method.name}" %>
+<div class="row">
+  <div class="small-7 small-offset-2 columns offset">
+    <%= link_to(@shipment_method.name, {:action => "show", :id => @shipment_method.id},{:class => "page-title"}) %>
+  </div>
+  <div class="small-3 columns offset-button">
+  </div>
+</div>
+<div class="row rendered" id="view-info" modal-message="">
+  <div class="small-2 columns"></div>
+  <div class="small-10 small columns">
+    <div class="row">
+      <div class="small-12 columns success">
+        <% if flash[:notice] %>
+            <div data-alert class="alert-box success-alert">
+              <%= flash[:notice] %>
+              <a href="#" class="close">&times;</a>
+            </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-12 columns">
+        <% if flash[:no_data] %>
+            <%= render "shared/no_data", {:message => flash[:no_data]} %>
+        <% end %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="<%= set_class('small-12 columns data-content display-none', 'small-12 columns data-content', @no_data)%>">
+        <table class="responsive collection-table">
+          <thead>
+          <tr>
+            <th>Medio de envio</th>
+            <th>Tiempo de entrega</th>
+            <th>Precio</th>
+            <th></th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr id="tr-<%= @shipment_method.id %>">
+            <td class="product-column"><%= @shipment_method.name %></td>
+            <td class="product-column"><%= @shipment_method.delivery_time %></td>
+            <td class="product-column"><%= number_to_currency(@shipment_method.price) %></td>
+            <td><%= link_to(content_tag(:i, "", :class => "fa fa-pencil-square icon-link-action")+" Editar", {:action => "edit", :id => @shipment_method.id },{:class => "link-action"}) %></td>
+            <td><%= link_to(content_tag(:i, "", :class => "fa fa-minus-square icon-link-action")+" Eliminar", {:action => "delete", :id => @shipment_method.id },{:class => "link-action", :data => {:confirm => ""}}) %></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

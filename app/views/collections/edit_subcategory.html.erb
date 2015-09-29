@@ -1,0 +1,16 @@
+<% @page_title= "Editar subcategoria" %>
+<div class="row">
+  <div class="small-7 small-centered columns">
+    <p class="page-title">Editar subcategoria</p>
+  </div>
+</div>
+<div class="row rendered">
+  <div class="small-2 columns"></div>
+  <div class="small-10 small columns">
+    <div class="row">
+      <div class="small-12 columns">
+        <%= render 'shared/collection_form', {action: 'update_subcategory', remote: "nonremote", value: "", button_label: 'Editar Subategoria', collection: @subcategory, type: "subcategory" } %>
+      </div>
+    </div>
+  </div>
+</div>

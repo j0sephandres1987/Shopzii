@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <title><%= @page_title || "Tu tienda" %></title>
+    <%= stylesheet_link_tag    "store" %>
+    <%= stylesheet_link_tag    "responsive-tables" %>
+    <%= javascript_include_tag "vendor/modernizr" %>
+
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body>
+  <div class="row full-width">
+    <div class="small-12 columns">
+      <header>
+          <nav class="top-bar nav-store" data-topbar role="navigation">
+            <p class="logo left">Tu tienda</p>
+              <ul class="inline-list cart">
+                <li><i class="fa fa-shopping-cart"></i></li>
+                <li id="cant-items"><%= link_to("#{session[:items_quantity]} Items", {:controller => "store", :action => "show_cart"}) %></li>
+                <li>|</li>
+                <li id="total-value"><%= link_to("#{number_to_currency(session[:total_value])} COP", {:controller => "store", :action => "show_cart"}) %></li>
+              </ul>
+          </nav>
+      </header>
+    </div>
+  </div>
+    <%= yield %>
+    <%= javascript_include_tag "application"%>
+  </body>
+</html>

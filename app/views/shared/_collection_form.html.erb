@@ -1,0 +1,18 @@
+<%= form_for collection, :url => {:action => action, :id => collection.id }, :data => {remote => value, :validation => true}, :builder => Judge::FormBuilder do |f| %>
+    <div class="row">
+      <div class="small-12 columns">
+        <%= f.label :name, "Nombre" %>
+        <%= f.text_field :name, :validate => true, :validation => "true" %>
+        <% if type == "subcategory" %>
+            <%= f.hidden_field :category_id, :value => "#{collection.category_id}" %>
+        <% end %>
+        <% if type == "property" %>
+            <%= f.hidden_field :product_id, :value => "#{collection.product_id}" %>
+        <% end %>
+        <% if type == "value" %>
+            <%= f.hidden_field :property_id, :value => "#{collection.property_id}" %>
+        <% end %>
+        <%= submit_tag button_label, :class => "button tiny button-action right" %>
+      </div>
+    </div>
+<% end %>
