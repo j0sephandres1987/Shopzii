@@ -1,5 +1,10 @@
 <% @page_title = "Carrito de compras" %>
-
+<script type="text/javascript">
+    (function(){function $MPC_load(){window.$MPC_loaded !== true && (function(){var s = document.createElement("script");s.type = "text/javascript";s.async = true;
+    s.src = document.location.protocol+"//resources.mlstatic.com/mptools/render.js";
+    var x = document.getElementsByTagName('script')[0];x.parentNode.insertBefore(s, x);window.$MPC_loaded = true;})();}
+    window.$MPC_loaded !== true ? (window.attachEvent ? window.attachEvent('onload', $MPC_load) : window.addEventListener('load', $MPC_load, false)) : null;})();
+</script>
 <div class="row">
   <div class="small-12 columns">
     <% if flash[:array] %>
@@ -9,9 +14,12 @@
 </div>
 <div class="row">
   <div class="small-7 small-offset-2 columns offset">
-      <p class="page-title"><%= @preference %></p>
+      <p class="page-title">Carrito de compras</p>
+      <p class="page-title"><%= @preference['id'] %></p>
+      <a name="MP-Checkout" class="blue-M-Rn-Ar-CoAll" href="<%= @preference['sandbox_init_point'] %>">Pagar con MercadoPago</a>
   </div>
 </div>
+<br><br>
 <div class="row rendered" id="view-info" modal-message="">
   <div class="small-2 columns"></div>
   <div class="small-10 small columns">
@@ -28,9 +36,10 @@
           <thead>
           <tr>
             <th>Imagen</th>
-            <th>Nombre</th>
-            <th>Precio</th>
+            <th>Producto</th>
             <th>Cantidad</th>
+            <th>Precio base</th>
+            <th>Subtotal</th>
             <th></th>
           </tr>
           </thead>

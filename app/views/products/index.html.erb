@@ -20,10 +20,10 @@
   <div class="small-10 small columns">
     <div class="row data-content <%= set_class('display-none', '', @no_data)%>">
       <div class="small-8 columns">
-        <%= render "shared/search_form", {placeholder: "Buscar una producto", action_url: "/collections/search", collection: nil, type: "product"} %>
+        <%= render "shared/search_form", {placeholder: "Buscar una producto", action_url: "/products/search", collection: nil, type: "product"} %>
       </div>
       <div class="small-4 columns">
-        <%= render "shared/sort_by_select", {action_url: "collections/sort", sort_by_options: @sort_by_options, collection: nil, type: "product"} %>
+        <%= render "shared/sort_by_select", {action_url: "products/sort", sort_by_options: @sort_by_options, collection: nil, type: "product"} %>
       </div>
     </div>
     <%= form_tag "products/delete_selected", :remote => true do  %>

@@ -35,6 +35,13 @@ nav * {
     display: inline-block;
 }
 
+.page-title {
+    font-size: 2em;
+    font-weight: 700;
+    color: #4DAF7C;
+}
+
+
 .logo {
     font-family: 'Comfortaa', cursive;
     font-size: 1.4em;

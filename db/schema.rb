@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150923164552) do
+ActiveRecord::Schema.define(version: 20150930165806) do
 
   create_table "cart_items", force: true do |t|
     t.integer  "product_id", default: 0
@@ -55,10 +55,14 @@ ActiveRecord::Schema.define(version: 20150923164552) do
   add_index "collections", ["store_id"], name: "index_collections_on_store_id"
 
   create_table "orders", force: true do |t|
-    t.integer  "store_id",   default: 0
-    t.boolean  "status",     default: true
+    t.integer  "store_id",     default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "status",       default: false
+    t.string   "payment_id"
+    t.integer  "total_value",  default: 0
+    t.string   "client_email"
+    t.string   "client_name"
   end
 
   add_index "orders", ["store_id"], name: "index_orders_on_store_id"

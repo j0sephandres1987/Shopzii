@@ -38,8 +38,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin]
 
-gem 'foundation-rails', '5.5.0.0'
-gem 'sass', '~> 3.3.14'
+gem 'foundation-rails'
 gem 'judge'
 gem 'will_paginate-foundation'
 gem 'jquery-turbolinks'

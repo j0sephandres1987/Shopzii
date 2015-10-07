@@ -55,8 +55,33 @@ class StoreController < ApplicationController
   end
 
   def show_cart
+    @section = "store"
+    order = current_order
     @cart_items = CartItem.where(:order_id => session[:order_id])
-    @preference = Store.new.mercado_pago_checkout
+    products = ""
+    total = 0
+    @cart_items.each do|ci|
+      products += Product.find(ci.product_id).name + " X #{ci.quantity}" + ", "
+      total += Product.find(ci.product_id).price * ci.quantity 
+    end
+
+    data = {
+        :items => [
+            {
+              :title => products,
+              :currency_id => "COP",
+              :unit_price => total,
+              :quantity => 1,
+            }
+        ]
+    }
+    
+    @preference = Store.new.mercado_pago_checkout(data)
+    order.total_value = total
+    order.payment_id = @preference["id"]
+    #replace with mercadopago notificacion
+    order.status = true
+    order.save
   end
 
   def join_value_cart_item(value_id, cart_item_id)

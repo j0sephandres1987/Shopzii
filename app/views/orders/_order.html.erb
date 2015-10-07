@@ -1,0 +1,8 @@
+<tr id="tr-<%= order.id %>">
+    <td><%= check_box_tag('selected[]', order.id) %></td>
+    <td class="photo-column "><%= order.client_name %></td>
+    <td class="product-column"><%= number_to_currency(order.total_value) + " COP" %></td>
+    <td class="product-column"><%= order.updated_at.strftime("%d %b %Y")%></td>
+    <td><%= link_to(content_tag(:i, "", :class => "fa fa-plus-square icon-link-action")+" ver", {:action => "show", :id => order.id },{:class => "link-action"}) %></td>
+</tr>
+

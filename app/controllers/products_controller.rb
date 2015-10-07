@@ -4,7 +4,15 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.select_data(nil, nil, nil).paginate(:page => params[:page], :per_page => 5)
-    @sort_by_options = [["Mas reciente", "created_at DESC", :selected => cookies[:sort_by_attr] == "created_at" && cookies[:sort_order] == "DESC"? true : false], ["Mas antiguo", "created_at ASC", :selected => cookies[:sort_by_attr] == "created_at" && cookies[:sort_order] == "ASC"? true : false], ["Alfabeticamente A-Z", "name ASC", :selected => cookies[:sort_by_attr] == "name" && cookies[:sort_order] == "ASC"? true : false], ["Alfabeticamente Z-A", "name DESC", :selected => cookies[:sort_by_attr] == "name" && cookies[:sort_order] == "DESC"? true : false]]
+    @sort_by_options = [
+      ["Mas reciente", "created_at DESC", :selected => cookies[:sort_by_attr] == "created_at" && cookies[:sort_order] == "DESC"? true : false],
+      ["Mas antiguo", "created_at ASC", :selected => cookies[:sort_by_attr] == "created_at" && cookies[:sort_order] == "ASC"? true : false], 
+      ["Alfabeticamente A-Z", "name ASC", :selected => cookies[:sort_by_attr] == "name" && cookies[:sort_order] == "ASC"? true : false],
+      ["Alfabeticamente Z-A", "name DESC", :selected => cookies[:sort_by_attr] == "name" && cookies[:sort_order] == "DESC"? true : false],
+      ["Mayor precio", "price DESC", :selected => cookies[:sort_by_attr] == "price" && cookies[:sort_order] == "DESC"? true : false],
+      ["Menor precio", "price ASC", :selected => cookies[:sort_by_attr] == "price" && cookies[:sort_order] == "ASC"? true : false]
+    ]
+    
     @no_data = false
     if @products.empty?
       flash[:no_data] = "No hay productos"
@@ -25,8 +33,10 @@ class ProductsController < ApplicationController
 
   def edit
     @product = Product.find(params[:id])
-    cant = 5 - @product.photos.count
-    #cant.times { @product.photos.build }
+    if @product.photos.count < 5
+      cant = 5 - @product.photos.count
+      cant.times { @product.photos.build }
+    end
     @categories = Category.all
     @shipment_methods = ShipmentMethod.all
   end
@@ -51,6 +61,41 @@ class ProductsController < ApplicationController
       redirect_to(:action => "index")
     end
   end
+  
+  def delete
+    @product = Product.find(params[:id])
+    respond_to do |format|
+      if @product.destroy
+        @products = Product.select_data(cookies[:search_query], cookies[:sort_by_attr], cookies[:sort_order]).paginate(:page => params[:page], :per_page => 5)
+        @success = "true"
+        @message = "El producto se elimino exitosamente"
+        format.html { redirect_to(:action => "index") }
+        format.js
+      else
+        @success = "false"
+        @message = "No se pudo eliminar el producto"
+        format.html { redirect_to(:action => "index") }
+        format.js
+      end
+    end
+  end
+  
+  def delete_selected
+    @count = 0
+    respond_to do |format|
+      @selected = Product.find(params[:selected])
+      @selected.each do |p|
+        if !p.destroy
+          @count = @count + 1
+        end
+      end
+        @products = Product.select_data(cookies[:search_query], cookies[:sort_by_attr], cookies[:sort_order]).paginate(:page => params[:page], :per_page => 5)
+        @count > 0 ? @success = "false" : @success = "true"
+        @success == "true" ? @message = "Los productos seleccionadas, se eliminaron correctamente" : @message = "Los productos seleccionadas, no pudieron eliminarse"
+        format.html { redirect_to(:action => "index") }
+        format.js
+    end
+  end
 
   def delete_all
     respond_to do |format|
@@ -63,6 +108,18 @@ class ProductsController < ApplicationController
         format.html { redirect_to(:action => "index") }
         format.js
       end
+    end
+  end
+  
+  def sort
+    respond_to do |format|
+      sort_by_attr = params[:sort_by_option].to_s.split(" ")[0]
+      sort_order = params[:sort_by_option].to_s.split(" ")[1]
+      cookies[:sort_by_attr] = sort_by_attr
+      cookies[:sort_order] = sort_order
+      @products = Product.select_data(cookies[:search_query], sort_by_attr, sort_order).paginate(:page => params[:page], :per_page => 5)
+      format.html { redirect_to(:action => "index") }
+      format.js
     end
   end
 
@@ -192,6 +249,25 @@ class ProductsController < ApplicationController
         @success = "false"
         @message = "No se pudo eliminar el valor"
         format.html { redirect_to(:action => "values", :id => property_id) }
+        format.js
+      end
+    end
+  end
+  
+  def search
+    respond_to do |format|
+      @products = Product.select_data(params[:search_text], cookies[:sort_by_attr], cookies[:sort_order]).paginate(:page => params[:page], :per_page => 5)
+      @products.count != 1 ? found = " productos encontrados." : found = " producto encontrado."
+      @message = @products.count.to_s + found
+      unless @products.empty?
+        cookies[:search_query] = params[:search_text]
+        @success = "true"
+        format.html { redirect_to(:action => "index") }
+        format.js
+      else
+        cookies[:search_query] = nil
+        @success = "false"
+        format.html { redirect_to(:action => "index") }
         format.js
       end
     end

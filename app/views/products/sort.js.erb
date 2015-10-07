@@ -1,0 +1,2 @@
+$('.pagination-centered').html("<%= j (will_paginate @products, :params => {:controller => 'products', :action => 'index'}, renderer: FoundationPagination::Rails) %>");
+$('tbody').html("<%= j (render @products) %>");

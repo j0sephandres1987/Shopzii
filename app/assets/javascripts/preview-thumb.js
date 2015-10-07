@@ -22,13 +22,11 @@ $.fn.previewImage = function(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
         reader.onload = function (e) {
-            $(li).append('<img class="preview-image" id="'+$(input).attr('id') + "-preview" +'" src="#" width="100" height="100">');
-            var img = $(li).find("img");
+            $(li).find("img").attr("id", $(input).attr('id') + "-preview").css("display", "inline");
             $(li).find("i").css("display", "none");
+            $(li).find("img").attr("src", e.target.result);
             $(li).find("p").css("display", "none");
             $(li).css("border", "none");
-            $("#" + img.attr('id')).attr('src', e.target.result);
-            $(li).find("img").css("position", "absolute");
             $(li).find("img").css("z-index", -1);
             $(li).append('<i class="fi-x close">Eliminar</i>').click(function() {
                 $(li).clearImage(this);

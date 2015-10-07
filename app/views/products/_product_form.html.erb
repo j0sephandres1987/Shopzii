@@ -48,7 +48,7 @@
         <%= f.label :photo, "Imagenes" %>
         <ul class="inline-list">
           <%= f.fields_for :photos do |p| %>
-              <li class="photo" photo="<%= product.photos[@index+=1].photo.url(:thumb).nil? %>"><i class="fa fa-camera"></i><p>Seleccionar Imagen</p><%= p.file_field :photo, :class => "upload_photo" %><%= load_photo(product, @count+=1) %></li>
+            <li class="photo" photo="<%= product.photos[@index+=1].photo.url(:thumb).nil? %>"><i class="fa fa-camera"></i><p>Seleccionar Imagen</p><%= p.file_field :photo, :class => "upload_photo" %><%= load_photo(product, @count+=1) %></li>
           <% end %>
         </ul>
       </div>
